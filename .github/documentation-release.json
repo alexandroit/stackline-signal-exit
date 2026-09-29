@@ -1,0 +1,26 @@
+{
+  "repository": "alexandroit/stackline-signal-exit",
+  "packages": [
+    {
+      "name": "@stackline/signal-exit",
+      "path": "README.md",
+      "version": "1.0.1",
+      "baselineVersion": "1.0.0",
+      "keywords": [
+        "stackline",
+        "npm-package",
+        "signal-exit",
+        "typescript",
+        "nodejs",
+        "signal",
+        "exit",
+        "maintenance-fork"
+      ],
+      "homepage": "https://alexandro.net/docs/vanilla/signal-exit/",
+      "baselineTarball": "https://registry.npmjs.org/@stackline/signal-exit/-/signal-exit-1.0.0.tgz",
+      "baselineIntegrity": "sha512-x91KLhAxtIg61fTqyq8Yo/0LBbdm8dOQbOLA+W5zRHtToZ0amFg7gS0lduGP+iP9zLFFZ/nuFymaw05z4iEWpQ==",
+      "expectedSha512": "5995cef6d6fc00278de15f5b451893d0a16a3bd4c4d08d36e9631dbec2e6550883c1e2aab26a5dc66cb74e68a8cae029298936183372e4f37e4222bb212424ea",
+      "tag": "docs-stackline-signal-exit-v1.0.1"
+    }
+  ]
+}
