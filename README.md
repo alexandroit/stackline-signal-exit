@@ -1,3 +1,19 @@
+# @stackline/signal-exit
+
+Independent maintenance fork of `signal-exit@4.1.0`. Original API, module format, runtime dependency ranges, and supported Node.js engines are preserved.
+
+```sh
+npm install @stackline/signal-exit
+# Preserve existing imports with an npm alias:
+npm install signal-exit@npm:@stackline/signal-exit@1.0.0
+```
+
+See [UPSTREAM.md](UPSTREAM.md) for the exact source and issue review, and [CHANGELOG.md](CHANGELOG.md) for focused maintenance changes. Development and release tooling runs on Node.js 24; that does not change the library runtime requirement.
+
+Maintained by [Stackline](https://alexandro.net/). [Issues](https://github.com/alexandroit/stackline-signal-exit/issues) · [npm](https://www.npmjs.com/package/@stackline/signal-exit).
+
+## Upstream documentation
+
 # signal-exit
 
 When you want to fire an event no matter how a process exits:

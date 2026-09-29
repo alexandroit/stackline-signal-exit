@@ -104,7 +104,7 @@ class Emitter {
     }
     this.emitted[ev] = true
     let ret: boolean = false
-    for (const fn of this.listeners[ev]) {
+    for (const fn of this.listeners[ev].slice()) {
       ret = fn(code, signal) === true || ret
     }
     if (ev === 'exit') {
@@ -146,7 +146,7 @@ class SignalExit extends SignalExitBase {
   // "SIGHUP" throws an `ENOSYS` error on Windows,
   // so use a supported signal instead
   /* c8 ignore start */
-  #hupSig = process.platform === 'win32' ? 'SIGINT' : 'SIGHUP'
+  #hupSig = globalThis.process.platform === 'win32' ? 'SIGINT' : 'SIGHUP'
   /* c8 ignore stop */
   #emitter = new Emitter()
   #process: ProcessRE
@@ -284,7 +284,7 @@ class SignalExit extends SignalExitBase {
     this.#process.exitCode = code || 0
     /* c8 ignore stop */
 
-    this.#emitter.emit('exit', this.#process.exitCode, null)
+    this.#emitter.emit('exit', typeof this.#process.exitCode === 'string' ? Number(this.#process.exitCode) : this.#process.exitCode, null)
     return this.#originalProcessReallyExit.call(
       this.#process,
       this.#process.exitCode
@@ -301,7 +301,7 @@ class SignalExit extends SignalExitBase {
       /* c8 ignore start */
       const ret = og.call(this.#process, ev, ...args)
       /* c8 ignore start */
-      this.#emitter.emit('exit', this.#process.exitCode, null)
+      this.#emitter.emit('exit', typeof this.#process.exitCode === 'string' ? Number(this.#process.exitCode) : this.#process.exitCode, null)
       /* c8 ignore stop */
       return ret
     } else {

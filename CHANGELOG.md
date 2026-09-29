@@ -1,3 +1,11 @@
+# Stackline changes
+
+## 1.0.0 — 2026-09-28
+
+Independent maintenance fork of signal-exit 4.1.0. Preserve published API, module exports and runtime engine compatibility. Confirmed #85: removing a listener from inside that callback mutated the active iteration and skipped the next listener. Iterate a snapshot and verify the exact A/B/alwaysLast sequence in a subprocess. Address #82 by normalizing a numeric string exitCode before delivering the documented numeric callback, with a subprocess regression. #80 asks for repeated captured signals, whereas 4.1.0 explicitly documents one-shot unloading; retain that contract. #78 involves simultaneous older-major copies; retain the upstream v3 coexistence workaround without claiming every host combination. #81 is optional tracing, not a confirmed defect. #84/#87 are unrelated content. Closed async-handler reports (#46/#70) are documented synchronous-exit limitations. Other closed engine/platform/debugger reports remain historical; real POSIX signal/exit subprocesses and Node14 compatibility are tested. Base license remains ISC; later upstream license changes are not imported.
+
+Pinned development tools, real API and packed-consumer checks, GitHub CI/CodeQL gates, exact-artifact npm provenance and immutable release evidence are added. See UPSTREAM.md for limits of issue triage.
+
 # Changelog
 
 ## 4.1

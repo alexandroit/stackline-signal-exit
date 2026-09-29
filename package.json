@@ -1,6 +1,6 @@
 {
-  "name": "signal-exit",
-  "version": "4.1.0",
+  "name": "@stackline/signal-exit",
+  "version": "1.0.0",
   "description": "when you want to fire an event no matter how a process exits.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/mjs/index.js",
@@ -39,45 +39,38 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "LICENSE*",
+    "license*",
+    "NOTICE",
+    "UPSTREAM.md",
+    "CHANGELOG.md",
+    "README.md",
+    "readme.md"
   ],
   "engines": {
     "node": ">=14"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tapjs/signal-exit.git"
+    "url": "git+https://github.com/alexandroit/stackline-signal-exit.git"
   },
   "keywords": [
     "signal",
-    "exit"
+    "exit",
+    "stackline",
+    "maintenance-fork"
   ],
   "author": "Ben Coe <ben@npmjs.com>",
   "license": "ISC",
   "devDependencies": {
-    "@types/cross-spawn": "^6.0.2",
-    "@types/node": "^18.15.11",
-    "@types/signal-exit": "^3.0.1",
-    "@types/tap": "^15.0.8",
-    "c8": "^7.13.0",
-    "prettier": "^2.8.6",
-    "tap": "^16.3.4",
-    "ts-node": "^10.9.1",
-    "typedoc": "^0.23.28",
-    "typescript": "^5.0.2"
+    "typescript": "6.0.2",
+    "@types/node": "24.12.2"
   },
   "scripts": {
-    "preversion": "npm test",
-    "postversion": "npm publish",
-    "prepublishOnly": "git push origin --follow-tags",
-    "preprepare": "rm -rf dist",
-    "prepare": "tsc -p tsconfig.json && tsc -p tsconfig-esm.json && bash ./scripts/fixup.sh",
-    "pretest": "npm run prepare",
-    "presnap": "npm run prepare",
-    "test": "c8 tap",
-    "snap": "c8 tap",
-    "format": "prettier --write . --loglevel warn",
-    "typedoc": "typedoc --tsconfig tsconfig-esm.json ./src/*.ts"
+    "build": "node -e \"require('fs').rmSync('dist-tmp',{recursive:true,force:true})\" && tsc -p tsconfig.json && tsc -p tsconfig-esm.json && bash scripts/fixup.sh",
+    "test": "node test/stackline.cjs",
+    "test:package": "node scripts/test-package.mjs"
   },
   "prettier": {
     "semi": false,
@@ -102,5 +95,13 @@
   },
   "funding": {
     "url": "https://github.com/sponsors/isaacs"
+  },
+  "bugs": {
+    "url": "https://github.com/alexandroit/stackline-signal-exit/issues"
+  },
+  "homepage": "https://github.com/alexandroit/stackline-signal-exit#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }

@@ -1,5 +1,8 @@
 {
-  "exclude": ["./test", "./tap-snapshots"],
+  "exclude": [
+    "./test",
+    "./tap-snapshots"
+  ],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "declaration": true,
@@ -12,6 +15,13 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es2022"
-  }
+    "target": "es2020",
+    "rootDir": "src",
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
 }
