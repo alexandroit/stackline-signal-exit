@@ -1,6 +1,6 @@
 {
   "name": "@stackline/signal-exit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "when you want to fire an event no matter how a process exits.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/mjs/index.js",
@@ -56,9 +56,13 @@
     "url": "git+https://github.com/alexandroit/stackline-signal-exit.git"
   },
   "keywords": [
+    "stackline",
+    "npm-package",
+    "signal-exit",
+    "typescript",
+    "nodejs",
     "signal",
     "exit",
-    "stackline",
     "maintenance-fork"
   ],
   "author": "Ben Coe <ben@npmjs.com>",
@@ -99,7 +103,7 @@
   "bugs": {
     "url": "https://github.com/alexandroit/stackline-signal-exit/issues"
   },
-  "homepage": "https://github.com/alexandroit/stackline-signal-exit#readme",
+  "homepage": "https://alexandro.net/docs/vanilla/signal-exit/",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
