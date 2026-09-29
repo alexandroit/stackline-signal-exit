@@ -4,13 +4,13 @@
 
 [![npm version](https://img.shields.io/npm/v/@stackline/signal-exit.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/signal-exit)
 [![license](https://img.shields.io/npm/l/@stackline/signal-exit.svg?style=flat-square)](https://github.com/alexandroit/stackline-signal-exit)
-[![GitHub repository](https://img.shields.io/badge/GitHub-alexandroit%2Fstackline-signal-exit-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-signal-exit)
+[![GitHub repository](https://img.shields.io/badge/GitHub-repository-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-signal-exit)
 [![Docs](https://img.shields.io/badge/docs-alexandro.net-0f766e?style=flat-square)](https://alexandro.net/docs/vanilla/signal-exit/)
 [![Reddit community](https://img.shields.io/badge/community-r%2FStackline-ff4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/r/Stackline/)
 
 **[Documentation](https://alexandro.net/docs/vanilla/signal-exit/)** | **[npm](https://www.npmjs.com/package/@stackline/signal-exit)** | **[Issues](https://github.com/alexandroit/stackline-signal-exit/issues)** | **[Repository](https://github.com/alexandroit/stackline-signal-exit)**
 
-**Current package version:** `1.0.1`
+**Current package version:** `1.0.2`
 
 ---
 
@@ -22,7 +22,7 @@
 
 | Item | Value |
 | :--- | :--- |
-| Package | `@stackline/signal-exit@1.0.1` |
+| Package | `@stackline/signal-exit@1.0.2` |
 | API target | `signal-exit@4.1.0` |
 | Supported Node.js | `>=14` |
 | License | `ISC` |
