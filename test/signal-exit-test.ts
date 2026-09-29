@@ -1,15 +1,12 @@
-import { exec } from 'child_process'
+import { execFile } from 'child_process'
 import t from 'tap'
 const isWindows = process.platform === 'win32'
-const shell = isWindows ? null : { shell: '/bin/bash' }
-const node = isWindows ? '"' + process.execPath + '"' : process.execPath
+const node = process.execPath
 
 import { isExecErr } from './fixtures/exec-err'
 
 t.test('receives an exit event when a process exits normally', t => {
-  exec(
-    node + ' ./test/fixtures/end-of-execution.js',
-    shell,
+  execFile(node, ['./test/fixtures/end-of-execution.js'],
     function (err, stdout) {
       t.equal(err, null)
       t.match(stdout.toString(), /reached end of execution, 0, null/)
@@ -19,7 +16,7 @@ t.test('receives an exit event when a process exits normally', t => {
 })
 
 t.test('receives an exit event when process.exit() is called', t => {
-  exec(node + ' ./test/fixtures/exit.js', shell, function (err, stdout) {
+  execFile(node, ['./test/fixtures/exit.js'], function (err, stdout) {
     if (!isWindows) {
       if (!isExecErr(err)) throw new Error('did not get expected error')
       t.equal(err.code, 32)
@@ -33,9 +30,7 @@ t.test(
   'ensures that if alwaysLast=true, the handler is run last (signal)',
   { skip: process.platform === 'win32' },
   t => {
-    exec(
-      node + ' ./test/fixtures/signal-last.js',
-      shell,
+    execFile(node, ['./test/fixtures/signal-last.js'],
       function (err, stdout) {
         if (!isExecErr(err))
           throw new Error('did not receive expected error')
@@ -50,9 +45,7 @@ t.test(
 t.test(
   'ensures that if alwaysLast=true, the handler is run last (normal exit)',
   t => {
-    exec(
-      node + ' ./test/fixtures/exit-last.js',
-      shell,
+    execFile(node, ['./test/fixtures/exit-last.js'],
       function (err, stdout) {
         if (err) throw err
         t.match(stdout.toString(), /first counter=1/)
@@ -67,9 +60,7 @@ t.test(
   'works when loaded multiple times',
   { skip: process.platform === 'win32' },
   t => {
-    exec(
-      node + ' ./test/fixtures/multiple-load.js',
-      shell,
+    execFile(node, ['./test/fixtures/multiple-load.js'],
       function (err, stdout) {
         if (!isExecErr(err))
           throw new Error('did not receive expected error')
@@ -85,7 +76,7 @@ t.test(
 )
 
 t.test('removes handlers when fully unwrapped', t => {
-  exec(node + ' ./test/fixtures/unwrap.js', shell, function (err) {
+  execFile(node, ['./test/fixtures/unwrap.js'], function (err) {
     if (!isExecErr(err)) throw new Error('did not receive expected error')
     if (!isWindows) {
       t.equal(err.signal, 'SIGTERM')
@@ -96,7 +87,7 @@ t.test('removes handlers when fully unwrapped', t => {
 })
 
 t.test('does not load() or unload() more than once', t => {
-  exec(node + ' ./test/fixtures/load-unload.js', shell, function (err) {
+  execFile(node, ['./test/fixtures/load-unload.js'], function (err) {
     if (err) throw err
     t.end()
   })
@@ -106,9 +97,7 @@ if (!isWindows) {
   t.test(
     'receives an exit event when a process is terminated with sigint',
     t => {
-      exec(
-        node + ' ./test/fixtures/sigint.js',
-        shell,
+      execFile(node, ['./test/fixtures/sigint.js'],
         function (err, stdout) {
           if (!isExecErr(err))
             throw new Error('did not get expected error')
@@ -122,9 +111,7 @@ if (!isWindows) {
   t.test(
     'receives an exit event when a process is terminated with sigterm',
     t => {
-      exec(
-        node + ' ./test/fixtures/sigterm.js',
-        shell,
+      execFile(node, ['./test/fixtures/sigterm.js'],
         function (err, stdout) {
           if (!isExecErr(err))
             throw new Error('did not get expected error')
@@ -136,9 +123,7 @@ if (!isWindows) {
   )
 
   t.test('does not exit on sigpipe', t => {
-    exec(
-      node + ' ./test/fixtures/sigpipe.js',
-      shell,
+    execFile(node, ['./test/fixtures/sigpipe.js'],
       function (err, stdout, stderr) {
         if (err) throw err
         t.match(stdout.toString(), /hello/)
@@ -149,16 +134,14 @@ if (!isWindows) {
   })
 
   t.test('handles uncatchable signals with grace and poise', t => {
-    exec(node + ' ./test/fixtures/sigkill.js', shell, function (err) {
+    execFile(node, ['./test/fixtures/sigkill.js'], function (err) {
       if (err) throw err
       t.end()
     })
   })
 
   t.test('does not exit if user handles signal', t => {
-    exec(
-      node + ' ./test/fixtures/signal-listener.js',
-      shell,
+    execFile(node, ['./test/fixtures/signal-listener.js'],
       function (err, stdout) {
         if (!isExecErr(err)) throw new Error('did not get expected error')
 

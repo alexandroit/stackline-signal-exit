@@ -25,3 +25,5 @@ Confirmed #85: removing a listener from inside that callback mutated the active 
 - [tapjs/signal-exit#46](https://github.com/tapjs/signal-exit/issues/46) (closed): async onExit handler
 - [tapjs/signal-exit#66](https://github.com/tapjs/signal-exit/issues/66) (closed): v3.0.4 has a breaking change
 - [tapjs/signal-exit#54](https://github.com/tapjs/signal-exit/issues/54) (closed): `kill ENOSYS` error coming from this module on Windows
+
+Legacy test subprocess launchers now use `execFile` with argument arrays instead of shell command concatenation. This resolves CodeQL environment-path injection findings and handles executable/fixture paths containing spaces; it does not change the shipped runtime.

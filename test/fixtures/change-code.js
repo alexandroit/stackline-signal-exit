@@ -1,5 +1,3 @@
-var join = require('path').join
-
 if (process.argv.length === 2) {
   var types = ['explicit', 'code', 'normal']
   var codes = [0, 2, 'null']
@@ -19,7 +17,7 @@ if (process.argv.length === 2) {
 
   var results = {}
 
-  var exec = require('child_process').exec
+  var execFile = require('child_process').execFile
   run(opts.shift())
 } else {
   var type = process.argv[2]
@@ -82,10 +80,9 @@ function listener(code, signal) {
 
 function run(opt) {
   console.error(opt)
-  var shell = process.platform === 'win32' ? null : { shell: '/bin/bash' }
-  exec(
-    join(process.execPath, ' ', __filename, ' ' + opt),
-    shell,
+  execFile(
+    process.execPath,
+    [__filename].concat(opt.split(' ')),
     function (err, stdout, stderr) {
       var res = JSON.parse(stdout)
       if (err) {

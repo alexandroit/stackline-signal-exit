@@ -1,11 +1,10 @@
 import assert from 'assert'
-import { exec } from 'child_process'
+import { execFile } from 'child_process'
 import t from 'tap'
 import { signals } from '../dist/cjs/index.js'
 
 const isWindows = process.platform === 'win32'
-const shell = isWindows ? null : { shell: '/bin/bash' }
-const node = isWindows ? '"' + process.execPath + '"' : process.execPath
+const node = process.execPath
 
 import { isExecErr } from './fixtures/exec-err'
 
@@ -32,8 +31,7 @@ for (const sig of sigs) {
   // sighup is weird and unstoppable on windows
   if (sig === 'SIGHUP') continue
   t.test('exits properly: ' + sig, t => {
-    const cmd = node + ' ' + exiterJS + ' ' + sig
-    exec(cmd, shell, (err, stdout) => {
+    execFile(node, [exiterJS, String(sig)], (err, stdout) => {
       if (sig) {
         if (!isExecErr(err)) {
           throw new Error('did not get exec err: ' + String(err))
@@ -64,8 +62,7 @@ const parentJS = require.resolve('./fixtures/parent.js')
 for (const sig of signals) {
   if (sig === 'SIGHUP') continue
   t.test('exits properly: (external sig) ' + sig, t => {
-    const cmd = node + ' ' + parentJS + ' ' + sig
-    exec(cmd, shell, (err, stdout) => {
+    execFile(node, [parentJS, String(sig)], (err, stdout) => {
       if (err) throw err
       const data = JSON.parse(stdout.toString())
 
